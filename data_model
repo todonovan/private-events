@@ -1,0 +1,29 @@
+User
+ - Attributes
+	- name
+	- password_digest
+	- email
+ - Roles
+	- Can create events (host)
+	- Can attend events (guest)
+ - Relations
+	- has_many events as host
+	- has_many events as guest
+
+Event
+ - Attributes
+	- title:string
+	- date:datetime?
+	- location:string
+	- details:text
+ - Roles
+ - Relations
+	- belongs_to :host, class_name: "User"
+	- has_many :event_guests, foreign_key: :event_guest_id
+	- has_many :guests, through: :event_guests, source: :event_guest
+
+Event_Guests
+ - how to represent?
+ - each event guest is a user
+ - each event guest belongs to a specific event?
+ - foreign key of user, foreign key of event?
